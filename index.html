@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Birthday Surprise</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #e0bbff;
+        color: #6d28d9;
+        text-align: center;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Floating background images */
+    .bg-float { position: fixed; z-index: -1; opacity: 0.15; width: 80px; animation: floatBg linear infinite alternate; }
+    .bg-float:nth-child(1) { animation-duration: 15s; }
+    .bg-float:nth-child(2) { animation-duration: 18s; }
+    .bg-float:nth-child(3) { animation-duration: 20s; }
+    .bg-float:nth-child(4) { animation-duration: 12s; }
+    .bg-float:nth-child(5) { animation-duration: 16s; }
+    .bg-float:nth-child(6) { animation-duration: 14s; }
+    .bg-float:nth-child(7) { animation-duration: 17s; }
+    .bg-float:nth-child(8) { animation-duration: 19s; }
+    .bg-float:nth-child(9) { animation-duration: 13s; }
+    .bg-float:nth-child(10) { animation-duration: 21s; }
+    .bg-float:nth-child(11) { animation-duration: 16s; }
+    .bg-float:nth-child(12) { animation-duration: 18s; }
+    .bg-float:nth-child(13) { animation-duration: 15s; }
+    .bg-float:nth-child(14) { animation-duration: 20s; }
+    .bg-float:nth-child(15) { animation-duration: 17s; }
+
+    @keyframes floatBg { 0% { transform: translateY(0px) translateX(0px) rotate(0deg); } 50% { transform: translateY(-30px) translateX(20px) rotate(15deg); } 100% { transform: translateY(0px) translateX(-10px) rotate(-10deg); } }
+
+    .page { display: none; padding: 40px; opacity: 0; transition: opacity 0.5s ease-in-out; }
+    .active { display: block; opacity: 1; }
+
+    .hb-text { font-size: 3rem; font-weight: bold; animation: pop 1.3s ease-in-out infinite alternate; margin-top: 20px; color: #6d28d9; }
+    @keyframes pop { from { transform: scale(1); } to { transform: scale(1.15); } }
+
+    .photo, .cat-wizard, .static { width: 250px; border-radius: 20px; box-shadow: 0 0 15px #d1baff; margin-top: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .photo:hover, .cat-wizard:hover { transform: scale(1.1); box-shadow: 0 0 25px #d1baff; }
+
+    button { margin-top: 30px; padding: 12px 25px; border: none; border-radius: 10px; font-size: 1.2rem; cursor: pointer; background: #ffd8e1; color: #6d28d9; font-weight: bold; }
+
+    .cake { margin: 40px auto; width: 200px; height: 150px; background: #ffb6d5; border-radius: 10px; position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .cake:hover { transform: scale(1.05); box-shadow: 0 0 25px #ffb6d5; }
+
+    .candle { width: 20px; height: 40px; background: #fff5b1; margin: auto; margin-top: -30px; border-radius: 5px; position: relative; }
+    .flame { width: 14px; height: 20px; background: #fff5b1; border-radius: 50%; position: absolute; left: 3px; top: -20px; animation: flicker 0.15s infinite alternate; }
+    @keyframes flicker { from { transform: scale(1); } to { transform: scale(1.2); } }
+
+    #old-text { margin-top: 20px; font-size: 1.7rem; display: none; color: #6d28d9; }
+
+    .confetti { position: fixed; width: 10px; height: 10px; top: -20px; animation: fall linear infinite; border-radius: 50%; }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(120vh) rotate(360deg); } }
+
+    .question { font-size: 2rem; margin-bottom: 30px; color: #6d28d9; min-height: 3em; }
+
+    .red-btn { background: #ffb6b6; color: #6d28d9; }
+    .blue-btn { background: #b6d8ff; color: #6d28d9; }
+
+    .sparkle-text { animation: glow 1.5s ease-in-out infinite alternate; color: #6d28d9; }
+    @keyframes glow { from { text-shadow: 0 0 8px #6d28d9; } to { text-shadow: 0 0 18px #a78bfa; } }
+
+    .stars::before, .stars::after { content: "✨ ✨ ✨ ✨ ✨"; position: absolute; width: 100%; left: 0; font-size: 2rem; animation: floatStars 6s linear infinite; opacity: 0.6; pointer-events: none; color: #ffe3f2; }
+    .stars::after { animation-duration: 8s; opacity: 0.5; }
+    @keyframes floatStars { 0% { transform: translateY(40px); } 100% { transform: translateY(-600px); } }
+
+    .bounce { animation: bounce 1.4s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+    .static { animation: none !important; position: relative !important; }
+</style>
+</head>
+<body>
+
+<!-- Floating Shrek images in the background -->
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:10%; left:5%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:20%; left:25%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:50%; left:15%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:70%; left:50%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:30%; left:70%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:60%; left:80%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:15%; left:40%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:45%; left:60%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:65%; left:20%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:25%; left:55%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:35%; left:10%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:75%; left:40%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:55%; left:65%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:5%; left:75%;">
+<img src="https://raw.githubusercontent.com/ammarahkhannnn/try16/refs/heads/main/Shrek%20rizz%20meme%20face.jpeg" class="bg-float" style="top:40%; left:35%;">
+
+<!-- Pages -->
+
+<div id="page1" class="page active">
+    <h1 class="hb-text" data-text="HAPPY BIRTHDAY MY FAV HOOMAN🎉💜"></h1>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/picture_bday/refs/heads/main/download%20(9).jpeg" class="photo" alt="birthday photo" />
+    <button onclick="nextPage(2)">Next →</button>
+</div>
+
+<div id="page2" class="page">
+    <h2>Tap the flames to blow the candles 🎂</h2>
+    <div class="cake" onclick="blow()">
+        <div class="candle">
+            <div id="flame" class="flame"></div>
+        </div>
+    </div>
+    <div id="old-text">You are a grandma now 👵🎉</div>
+    <button onclick="nextPage(3)">Next →</button>
+</div>
+
+<div id="page3" class="page">
+    <h2 class="question" data-text="Are you aware that you are gorjus? 💖"></h2>
+    <button class="red-btn" onclick="nextPage(4)">YES</button>
+    <button class="blue-btn" onclick="nextPage(4)">YES (in blue)</button>
+</div>
+
+<div id="page4" class="page">
+    <h2 class="question sparkle-text" data-text="🐱💜 This magical cat is here to bless you with happiness & goodness forever 💜🐱"></h2>
+    <div class="stars"></div>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try11/refs/heads/main/wizard%20cat%20icon.jpeg" class="cat-wizard" alt="Cute Cat Wizard" />
+    <button class="red-btn bounce" onclick="nextPage(5)">Yes, I accept and agree</button>
+    <button class="blue-btn bounce" onclick="nextPage(5)">Yes, I accept and agree (in blue)</button>
+    <br><br>
+    <button onclick="nextPage(1)" style="margin-top:35px;" class="bounce">Back to Start ↻</button>
+</div>
+
+<div id="page5" class="page">
+    <h2 class="question sparkle-text" data-text="🐱💜 This wizard went to your dreams and found some pictures 💜🐱"></h2>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try11/refs/heads/main/wizard%20cat%20icon.jpeg" class="cat-wizard" alt="Cute Cat Wizard" />
+    <br>
+    <button class="red-btn bounce" onclick="nextPage(6)">Yes</button>
+    <button class="blue-btn bounce" onclick="nextPage(6)">I’m gonna show them anyway</button>
+    <br><br>
+    <button onclick="nextPage(1)" style="margin-top:35px;" class="bounce">Back to Start ↻</button>
+</div>
+
+<div id="page6" class="page">
+    <h2 class="question static" data-text="🐱💜 Wizard cat can't believe you are cheating on Chan with Lee now 💜🐱"></h2>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try22/refs/heads/main/WhatsApp%20Image%202025-11-18%20at%2014.53.07_5bb4a1bc.jpg" class="static" alt="Shocking Picture" />
+    <br><br>
+    <button class="red-btn bounce" onclick="nextPage(7)">Next →</button>
+    <button onclick="nextPage(1)" class="bounce">Back to Start ↻</button>
+</div>
+
+<div id="page7" class="page">
+    <h2 class="question sparkle-text" data-text="🐱💜 Welcome home cheater 💜🐱"></h2>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try22/refs/heads/main/WhatsApp%20Image%202025-11-18%20at%2014.59.58_37829267.jpg" class="cat-wizard" alt="Welcome Home" />
+    <br><br>
+    <button class="red-btn bounce" onclick="nextPage(8)">Next →</button>
+    <button onclick="nextPage(1)" class="bounce">Back to Start ↻</button>
+</div>
+
+<div id="page8" class="page">
+    <h2 class="question sparkle-text" data-text="🐱💜 U cheated and he still got you a cake. MAKE A WISH 💜🐱"></h2>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try24/refs/heads/main/WhatsApp%20Image%202025-11-18%20at%2015.32.24_69f44604.jpg" class="cat-wizard" alt="Cake Surprise" />
+    <br><br>
+    <button onclick="nextPage(9)" class="bounce">Next →</button>
+    <button onclick="nextPage(1)" class="bounce">Back to Start ↻</button>
+</div>
+
+<div id="page9" class="page">
+    <h2 class="question sparkle-text" data-text="🌸 Flowers for you 🌸"></h2>
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try28/refs/heads/main/download%20(12).jpeg" class="photo" alt="Flower 1" />
+    <img src="https://raw.githubusercontent.com/ammarahkhannnn/try28/refs/heads/main/download%20(13).jpeg" class="photo" alt="Flower 2" />
+    <br><br>
+    <button onclick="nextPage(1)" class="bounce">Back to Start ↻</button>
+</div>
+
+<script>
+function typeText(element) {
+    const text = element.dataset.text;
+    element.textContent = "";
+    let i = 0;
+    const interval = setInterval(() => {
+        element.textContent += text[i];
+        i++;
+        if (i >= text.length) clearInterval(interval);
+    }, 50);
+}
+
+function nextPage(num) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const next = document.getElementById('page' + num);
+    next.classList.add('active');
+
+    const typingElement = next.querySelector('[data-text]');
+    if(typingElement) typeText(typingElement);
+
+    if([2,8,9].includes(num)) launchConfetti();
+}
+
+function blow() {
+    const flame = document.getElementById('flame');
+    flame.style.display = "none";
+    document.getElementById('old-text').style.display = "block";
+    launchConfetti();
+}
+
+function launchConfetti() {
+    for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.classList.add('confetti');
+        piece.style.left = Math.random() * 100 + "vw";
+        const hue = Math.random() * 360;
+        piece.style.background = `hsl(${hue}, 70%, 85%)`;
+        piece.style.animationDuration = (2 + Math.random()*2) + "s";
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 4000);
+    }
+}
+
+// Initialize typing on page load
+document.querySelectorAll('[data-text]').forEach(el => {
+    if(el.closest('.page').classList.contains('active')) typeText(el);
+});
+</script>
+
+</body>
+</html>
